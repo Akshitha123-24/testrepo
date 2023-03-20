@@ -1,0 +1,1577 @@
+W3,Leetcode,hackerrank,stackoverflow------>Akshitha@123
+Github---------->aniketh05$
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+var allowPaste = function(e){
+  e.stopImmediatePropagation();
+  return true;
+};
+document.addEventListener('paste', allowPaste, true);
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$4444
+"""
+Write a python program to
+a. check if element exists in list and print the number of occurrences of the element
+b. largest element of the list
+c. smallest element of the list
+
+Test case 1:
+
+Enter list elements: 4 9 7 6 3 12 7 12 7
+Enter search key:7
+7 exists, count of 7 is 3
+Largest element: 12
+smallest element: 3
+
+Test case 2:
+
+Enter list elements: 8 6 12 34 75 61
+Enter search key:10
+10 does not exist
+Largest element: 75
+smallest element: 6
+
+"""
+l1=input("Enter list elements: ")
+l=list(map(int,l1.split()))
+s=int(input("Enter search key:"))
+flag=0
+count=0
+for i in l:
+    if(i==s):        
+        flag=1
+        count=count+1
+     
+     
+if(flag==1):
+    print("{0} exists, count of {0} is {1}".format(s,count))
+
+else:
+    print("{0} does not exist".format(s))
+    
+print("Largest element: {}".format(max(l)))
+print("smallest element: {}".format(min(l)))
+
+
+    
+
+
+"""
+Python program to interchange first and last elements in a list
+
+Test case 1:
+
+Enter list elements: 2 6 7 9 4 3
+List before interchange: [2, 6, 7, 9, 4, 3]
+List after interchange: [3, 6, 7, 9, 4, 2]
+
+"""
+l=list(map(int,input("Enter list elements: ").split()))
+print("List before interchange: ",l)
+n=len(l)
+temp=l[0]
+l[0]=l[n-1]
+l[n-1]=temp
+print("List after interchange: ",l)
+
+"""
+print("List before interchange: {0}.format(l))
+t=l[0]
+l[0]=l[-1]
+l[-1]=t
+print(""List before interchange: {0}.format(t))
+"""
+
+//////////////////////////////////////////////////////////////
+
+
+"""
+Write a python program to find sum of digits in each element of a List using reduce()
+
+Test case 1:
+
+Enter list elements: 121 2364 15 84
+Resultant List: [4, 15, 6, 12]
+
+"""
+from functools import reduce
+s=input("Enter list elements: ").split()
+l=[]
+for i in s:
+    l1=reduce(lambda x,y:int (x)+int (y),list(str(i)))
+    l.append(l1)
+print("Resultant List: "+str(l))
+
+////////////////////////////////////////////////////////////
+
+"""write a python program using
+1. filter() and list() functions and .lower() method to  filter all the vowels in a given string.
+2. filter() and list() functions to filter all the positive integers in the string.
+
+case=1
+Enter a string :python latest version is 3.10
+['o', 'a', 'e', 'e', 'i', 'o', 'i']
+['3', '1', '0']
+"""
+l=input("Enter a string :")
+p=l.lower()
+a=['a','e','i','o','u']
+b=['0','1','2','3','4','5','6','7','8','9']
+L=list(filter(lambda x:True if x in a else False,p))
+P=list(filter(lambda x:True if x in b else False,p))
+print(L)
+print(P)
+
+from datetime import *
+n=int(input())
+l=[]
+for i in range(n):
+    a=input().split()
+    d0=date.today()
+    d1=date(int(a[1]),int(a[2]),int(a[3]))
+    delta=d0-d1
+    l.append((a[0],delta.days))
+    #a[0] is the name ;a[1] is the birth year
+    #this is a tuple with the name and age in it
+l.sort(key=lambda x:x[1])
+print("Oldest person is ",l[-1][0])
+print("Youngest person is ",l[0][0])
+
+
+#year-month-date
+l2=list(map(int,input().split()))
+l1=list(map(int,input().split()))
+if (l1[2]==l2[2] and l1[1]==l2[1]):
+    print("Yes")
+else:
+    print("No")
+#to check whether someone shares a same birthday
+    
+
+
+"""
+With a given integral number n, write a program to generate a dictionary that
+contains (i, i*i) such that is an integral number between 1 and n (both included).
+and then the program should print the dictionary.
+case=1
+Enter a number :7
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49}
+
+"""
+n=int(input("Enter a number :"))
+d={}
+for i in range(1,n+1):
+    d[i]=i*i
+print(d)
+    
+//////////////////////////////////////////////////////////
+class Student:
+    #dunder=="double under' methods or magic methods
+    #this(explicit pointer that is why we use arrow) in c++ is self(implicit pointer) in python
+    # The type is implicit..i.e, it is understood what datatype is given without mentioning as of c++ language
+    def __init__(self,age,name,rollno,size):
+        self.age=age
+        self.name=name
+        self.rollno=rollno
+        self.marks=[None]*size
+        # Null in c++ is None in python where{*==replication}replicates the size
+    # def display(self):
+    #     print("age = {0} name={1} rollno={2}".format(self.age,self.name,self.rollno))
+    def __repr__(self): 
+        # it is default function gives access to print option-->for display purposes
+       return "age = {0} name = {1} rollno = {2} smarks = {3}".format(self.age,self.name,self.rollno,sum(self.marks))
+
+    def __eq__(self,other):
+        # this is used for equality purposes
+        if self.age==other.age and self.name==other.name and self.rollno==other.rollno:
+            return True
+        else:
+            return False
+    def __gt__(self,other):
+        return self.age>other.age
+    def __setitem__(self,key,value):
+        # key is the index of a list
+        self.marks[key]=value
+# Here s1 and s2 are the student objects
+s1=Student(18,"Sash",101,3)
+# s.display()
+# print(s)
+s2=Student(18,"Pravi",101,3)
+s3=Student(10,"Gopal",103,3)
+# print(id(s1))
+# print(id(s2))
+# s.display()
+# print(s)
+if(s1==s2):
+    print("Students are equal")
+else:
+    print("Students are not equal")
+# if(s1>s2):
+#     print("s1 is older")
+# else:
+#     print("s1 is younger")
+# The condition is not mentioned for python to work according to it....so if we compile...it throws some error
+# if we dont mention def __gt__(self,other) which gives access to greater than expreesion
+
+if(s1>s2):
+    print("s1 is older")
+else:
+    print("s2 is older")
+#Here object cannot be used as a list in the below case to add elememts like in a list
+s1[0]=30
+s1[1]=45
+s1[2]=56
+s2[0]=67
+s2[1]=65
+s2[2]=76
+s3[0]=45
+s3[1]=34
+s3[2]=10
+slist=[]
+slist.append(s1)
+slist.append(s2)
+slist.append(s3)
+print(slist)
+slist.sort()
+# It is sorted according to the age
+print(slist)
+# Now we are sorting it according to the marks
+slist.sort(key=lambda x:sum(x.marks),reverse=True)
+# x is each object/student.....lambda will be called on each student/object
+print(slist)
+
+//////////////////////////////////////////////////////////
+
+"""
+Write a python program to create list of dictionaries
+1. store student details (id, name and marks) as a dictionary 
+2. find which student has maximum marks
+
+Test case:
+
+Enter number of students:3                                                                                              
+Enter student details:                                                                                                  
+101 Hima 78 96 82                                                                                                       
+102 Nikitha 87 68 91                                                                                                    
+103 Ram 74 65 45                                                                                                        
+
+Student details:                                                                                                        
+[{'id': '101', 'name': 'Hima', 'marks': [78, 96, 82]}, {'id': '102', 'name': 'Nikitha', 'marks': [87, 68, 91]}, {'id': '
+103', 'name': 'Ram', 'marks': [74, 65, 45]}]                                                                            
+
+101 Hima has highest marks 256
+"""
+n=int(input("Enter number of students:"))
+studentlist=[]
+list=[]
+# which has the dictionary with student data in the list
+print("Enter student details:")
+for i in range(n):
+    studentdict={}
+    # To store student details that is name,id and marks
+    markslist=[]
+    # This is to store marks of them that is a list
+    sdata=input().split()
+    # Taking the input details
+    #sdata[0]=id,sdata[1]=name,sdata[2]=sdata[3]=sdata[4]=marks
+    #So now we are filling the dictionary accordingly which are taken as input in sdata to empty dictionary
+    studentdict["id"]=studentdata[0]
+    studentdict["name"]=studentdata[1]
+    markslist.append(int(studentdata[2]))
+    markslist.append(int(studentdata[3]))
+    markslist.append(int(studentdata[4]))
+    # Assigning the data to the dictionary by using their keys ,i.e, id,name,marks
+    studentdict["marks"]=markslist
+    # now giving the marks list to the key("marks")
+    # adding the marks
+    s=sum(markslist)
+    list.append(s)
+    studentlist.append(studentdict)
+    # Now giving everything (dictionaries) to the the bigger list ....now the list is complete
+    
+print("Student details:") 
+print(studentlist)
+p=max(list)
+for i in range(0,len(list)):
+    if(list[i]==p):
+        break
+    
+    
+print("\n{} {} has highest marks {}".format(studentlist[i]['id'],studentlist[i]['name'],p))
+/////////////////////////////////////////////////
+
+"""
+write a python  program to compare  points  of  a Line by their distances to
+(0, 0)  and arrange the points in ascending order 
+Note : create a point class and pass different points (values) to it as objects
+and use sort method to get ascending order 
+Testcases:
+Enter number of points 3                                                                                                 
+0                                                                                                                       
+1                                                                                                                       
+3                                                                                                                       
+0                                                                                                                       
+1                                                                                                                       
+0                                                                                                                       
+[Point(x=0, y=1), Point(x=1, y=0), Point(x=3, y=0)]                                                                     
+"""
+
+class Point:
+    def __init__(self,x,y):
+        # Initializing the variables-->constructor
+        self.x=x
+        self.y=y
+    def __repr__(self):
+        # to display
+        return "Point(x={0},y={1})".format(self.x,self.y)
+        
+n=int(input("Enter number of points "))
+pointlist=[]
+for i in range(n):
+    x=int(input())
+    y=int(input())
+    p=Point(x,y)
+    pointlist.append(p)
+    
+pointlist.sort(key=lambda p:p.x*p.x+p.y*p.y)
+# we sorting based on x^2+y^2-->distance between the pooint and (0,0)
+print(pointlist)
+
+        
+///////////////////////////////////////////////////////////////////
+
+"""
+Write a python program to create a class citizen and compare ages  of different
+citizens  print older citizen name
+Test case:
+Enter citizen 1 Details
+varma
+aggadi
+hyderabad
+32
+Enter citizen 2 Details
+venky
+kethineni
+guntur
+30
+Varma
+"""
+class citizen:
+    def __init__(self,firname,secname,place,age):
+        self.firname=firname
+        self.secname=secname
+        self.place=place
+        self.age=age
+    def __gt__(self,other):
+        if self.age>other.age:
+            return True
+        else:
+            return False
+    def __repr__(self):
+        return self.firname
+
+print("Enter citizen 1 Details")
+n1=input()
+n2=input()
+p1=input()
+a1=int(input())
+c1=citizen(n1,n2,p1,a1)
+print("Enter citizen 2 Details")
+n3=input()
+n4=input()
+p2=input()
+a2=int(input())
+c2=citizen(n3,n4,p2,a2)
+if(c1>c2):
+    print(c1)
+else:
+    print(c2)
+
+/////////////////////////////////////////////////////////////////
+print("Enter list of student names :")
+l1=input().split()
+print("Enter student marks:")
+l2=list(map(int,input().split()))
+d={}
+l3=[]
+p=max(l2)
+q=min(l2)
+for i in range(len(l1)):
+    d[l1[i]]=l2[i]
+print("Dictionary : " +str(d))
+print("Maximum Marks:  {}".format(p))
+print("Minimum Marks:  {}".format(q))
+print("student names with first class:")
+for j in l1:
+    if(d[j]>=60 and d[j]<75):
+        print(j)
+//////////////////////////////////////////////////////////////////
+""" 
+write a python program to read a list from user and write two methods
+1. sum() to find sum of all elements in a list
+2. large() to find largest number in a list
+case=1
+Enter number of elements : 5
+8
+6
+3
+14
+7
+sum of list is :38
+largest number is :14
+"""
+x=int(input("Enter number of elements : "))
+list=[]
+for i in range(x):
+    a=int(input())
+    list.append(a)
+print("sum of list is :",sum(list))
+print("largest number is :",max(list))
+
+/////////////////////////////////////////////////
+
+"""
+Write a python program to 
+i. find summation of each word in a list
+ii. perform reverse sort on summation
+
+case=1
+Enter list elements :
+kmit ngit kmec jntu ou
+[53, 50, 32, 65, 36]
+[65, 53, 50, 36, 32]
+
+"""
+l=input("Enter list elements :").split()
+s=[]
+for i in l:
+    a=0
+    for j in i:
+        a=a+ord(j)-96
+    s.append(a)
+print(s)
+s.sort(reverse=True)
+print(s)
+///////////////////////////////////////////////////////
+"""Given the participants' score sheet for your kmit Sports Day, you are required 
+to find the runner-up score. You are given n scores. Store them in a list and 
+find the score of the runner-up.
+Input Format:
+The first line contains n. The second line contains an array A[] of n integers 
+each separated by a space.
+Constrains
+•	2 ≤  n ≤  10
+•	-100 ≤  A[i] ≤ 100
+case=1
+5 
+1 2 6 6 5 
+5
+"""
+x=int(input())
+n=list(map(int,input().split()))
+li=[]
+li=list(set(n))
+li.sort
+print(li[-2])
+
+
+////////////////////////////////////////////////////////////
+"""
+1.	Write the following classes with class variables, instance variable and
+illustration the self variable 
+i)	Robot (to greet the world)
+
+Test Case:
+Enter your name:KMIT                                                                                                   
+Robot says hello to KMIT.
+"""
+class robot:
+    def __init__(self,name):
+        self.name=name
+    def __repr__(self):
+        return "Robot says hello to {}.".format(self.name)
+n=input("Enter your name:")
+p=robot(n)
+print(p)
+
+/////////////////////////////////////////////////////////////////
+"""
+2. Make a class called Restaurant. 
+    The __init__() method for Restaurant should store two attributes: 
+a restaurant_name and a cuisine_type. 
+    Make a method called describe_restaurant() that prints these 
+two pieces of information, and 
+    a method called open_restaurant() that prints 
+a message indicating that the restaurant is open.
+    Make an instance called restaurant from your class. 
+and then call both methods.
+
+Note:
+if the time is in between 11hrs and 23hrs it should print 
+    Restaurant Open
+Test Case:   
+Enter the Restaurant name: paradise                                                                                     
+Enter the Dish: biryani                                                                                                 
+Welcome to paradise                                                                                                     
+biryani                                                                                                                 
+Restaurant Closed
+
+"""
+class Restaurant:
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name=restaurant_name
+        self.cuisine_type=cuisine_type
+    def __repr__(self):
+        return "Welcome to {}\n{}".format(self.restaurant_name,self.cuisine_type)
+    def open_restaurant(time):
+        if(time>11 and time<23):
+            print("Restaurant Open")
+        else:
+            print("Restaurant Closed")
+res=input("Enter the Restaurant name: ")
+dish=input("Enter the Dish: ")
+obj=Restaurant(res,dish)
+print(obj)
+curr_time=8
+Restaurant.open_restaurant(curr_time)
+//////////////////////////////////////////////////////
+"""
+1.	Write the following classes with class variables, 
+instance variable and illustration the self variable 
+ii)	ATM (to deposit and withdraw amount from ATM machine)
+Note: take some intial amount in constructor
+
+Test Case
+Enter the amount to withdraw: 5000                                                                                      
+Remaining balance:  45000                                                                                               
+Enter the amount to deposit: 6000                                                                                       
+Updated balance:  51000 
+"""
+class ATM:
+    def __init__(self,initial_amt):
+        self.initial_amt=50000
+    def withdraw(self):
+        amt=int(input("Enter the amount to withdraw: "))
+        self.initial_amt=self.initial_amt-amt
+        print("Remaining balance:  {}".format(self.initial_amt))
+    def deposit(self):
+        amount=int(input("Enter the amount to deposit: "))
+        self.initial_amt=self.initial_amt+amount
+        print("Updated balance:  {}".format(self.initial_amt))
+    
+a=ATM(50000)
+a.withdraw()
+a.deposit()
+///////////////////////////////////////////////////////////////////////
+class ATM:
+    def __init__(self, initial_amt, pinno):
+        self.initial_amt = 50000
+        self.initial_pinno = 1234
+        self.pinno = pinno
+
+    def withdraw(self):
+        amt = int(input("Enter the amount to withdraw: "))
+        if amt > 50000:
+            print("Insufficient balance")
+        else:
+            self.initial_amt = self.initial_amt - amt
+            print("Remaining balance:  {}".format(self.initial_amt))
+
+    def deposit(self):
+        amount = int(input("Enter the amount to deposit: "))
+        self.initial_amt = self.initial_amt + amount
+        print("Updated balance:  {}".format(self.initial_amt))
+
+    def pin(self):
+        x = int(input("Press 1 to change the pin:\n"))
+        if x == 1:
+            curr = int(input("Enter your current pin:"))
+            if curr == self.pinno:
+                newpin = int(input("Enter your new pin:"))
+                self.pinno = curr
+            else:
+                print("You have entered wrong current pin")
+
+
+n = int(input("Enter pin: "))
+a = ATM(50000, n)
+# a = ATM(50000)
+option = int(input("Enter 1 for withdraw!\n 2 for deposit!\n 3 for change of pin!\n"))
+if (option == 1):
+    a.withdraw()
+elif (option == 2):
+    a.deposit()
+else:
+    a.pin()
+
+/////////////////////////////////////////////////////////////
+/* C++ Program to Check for Balanced Brackets in an expression (well-formedness)
+using Stack 
+
+Sample Test Cases:
+Input:
+Enter expression
+{{[[(())]]}}
+Output:
+Braces are balanced
+
+Input:
+Enter expression
+{[(])}
+Output:
+Braces are imbalanced
+
+*/
+#include <iostream>
+#include<stack>
+using namespace std;
+
+class BracesBalance{
+	public:
+		bool areBalancedBraces(string str){
+		    stack<char> Stack;
+		    //Write code here  
+		    for(int i=0;i<str.length();i++){
+		    if(str[i]=='{'||str[i]=='['||str[i]=='('||str[i]=='<'){
+		        Stack.push(str[i]);
+		        }
+		    else{
+		        switch(Stack.top()){
+		        case '{':
+		        if(str[i]=='}'){
+		            Stack.pop();
+		        }
+		        case '[':
+		        if(str[i]==']'){
+		            Stack.pop();
+		        }
+		        case '(':
+		        if(str[i]==')'){
+		            Stack.pop();
+		        }
+		        case '<':
+		        if(str[i]=='>'){
+		            Stack.pop();
+		        }
+		        }
+		    }
+		}
+		if(Stack.empty()){
+		    return true;
+		}
+		else{
+		    return false;
+		}
+	}	
+};
+
+int main(){
+	BracesBalance bb;
+	string expr; 
+	cout<<"Enter expression"<<endl;
+	cin>>expr;    
+    if (bb.areBalancedBraces(expr))
+        cout <<"Braces are balanced";
+    else
+        cout <<"Braces are imbalanced";
+    return 0;
+}
+/////////////////////////////////////////////////////////
+program --->>3
+"""
+Write a program to check whether the given number is Consecutive Four Sum Number or 
+not. Consecutive Four Sum Number: A positive integer is called as a ‘Consecutive Four 
+Sum (CFS) number’ if that number can be expressed as the sum of four consecutive 
+positive integers.
+
+Sample input & output 1:
+Enter an integer: 50
+50 is Consecutive Four Sum Number
+Sample input & output 2:
+Enter an integer: 17
+17 is not Consecutive Four Sum Number
+
+"""
+import math
+# 1+2+3+4=10-->Consecutive Four Sum Number
+n=int(input("Enter an integer: "))
+a=math.floor(n/4) - 1
+if(4*a + 6 == n):
+    print(n," is Consecutive Four Sum Number")
+else:
+    print(n," is not Consecutive Four Sum Number")
+
+/////////////////////////////////////////////////////////////////
+1a-->
+"""Write the following classes with class variables, instance variable and illustration the self
+variable Robot (to greet the world)”””
+
+TestCase:
+Input:
+Enter your name: vijetha
+Output:
+Robot says hello to vijetha.
+"""
+class Robot:
+    def __init__(self,name):
+        self.name=name
+    def __repr__(self):
+        return "Robot says hello to {}".format(self.name)
+n=input("Enter your name: ")
+obj=Robot(n)
+print(obj)
+///////////////////////////////////////////////////////
+1b--->
+"""
+Write the following classes with class variables, instance variable and illustration the self
+variableii) ATM (to deposit and withdraw amount from ATM machine)
+
+steps:
+-create a class , methods for withdraw and deposit
+-balance is 50000
+-if withdraw amount is greater than 50000  
+  print Insufficient Balance or print the remaining balance
+-if deposit add to balance
+-print the updated balance
+
+TestCase:
+Sample Input & Output 1:
+Enter the amount to withdraw: 9500
+Remaining balance: 40500
+Enter the amount to deposit: 28004
+Updated balance: 43300
+"""	
+class ATM:
+    # def __init__(self,initial_amt,pinno
+    def __init__(self,initial_amt):
+        self.initial_amt=50000
+        # self.initial_pinno=1234
+        # self.pinno=pinno
+    def withdraw(self):
+        amt=int(input("Enter the amount to withdraw: "))
+        if amt>50000:
+            print("Insufficient balance")
+        else:
+            self.initial_amt=self.initial_amt-amt
+            print("Remaining balance:  {}".format(self.initial_amt))
+    def deposit(self):
+        amount=int(input("Enter the amount to deposit: "))
+        self.initial_amt=self.initial_amt+amount
+        print("Updated balance:  {}".format(self.initial_amt))
+    # def pin(self):
+    #     Pin=int(input("Enter the pin: "))
+    #     if self.initial_pinno==Pin:
+    #         print("Valid pin")
+    #     else:
+    #         print("Invalid pin")
+        
+    
+# a=ATM(50000,1234)
+a=ATM(50000)
+a.withdraw()
+a.deposit()
+# a.pin()
+///////////////////////////////////////////////////////
+program-->>>2
+"""Make a class called Restaurant. The __init__() method for Restaurant should store two
+attributes: a restaurant_name and a cuisine_type. Make a method called
+describe_restaurant() that prints these two pieces of information, and a method called
+open_restaurant() that prints a message indicating that the restaurant is open. Create three
+different instances from the class, print the two attributes individually, and then call both
+methods for each instance.
+
+Sample input & output 1:
+Enter the Restaurant name: Minerva
+Enter the Cuisine: South Indian Cuisine
+Welcome to Minerva
+South Indian Cuisine
+Restaurant Open
+
+Sample input & output 2:
+Enter the Restaurant name: Paradise
+Enter the Cuisine: Indian Cuisine
+Welcome to Paradise
+Indian Cuisine
+Restaurant Closed
+"""
+class Restaurant:
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name=restaurant_name
+        self.cuisine_type=cuisine_type
+    def __repr__(self):
+        return "Welcome to {}\n{}".format(self.restaurant_name,self.cuisine_type)
+    def open_restaurant(time):
+        if(time>11 and time<23):
+            print("Restaurant Open")
+        else:
+            print("Restaurant Closed")
+res=input("Enter the Restaurant name: ")
+dish=input("Enter the Cuisine: ")
+obj=Restaurant(res,dish)
+print(obj)
+curr_time=8
+Restaurant.open_restaurant(curr_time)
+///////////////////////////////////////////////////////////////
+program--->>>6
+"""
+Write a program to create a list of tuples from given list having number and its cube in 
+each tuple.
+
+Sample input & output:
+Enter numbers: 8 6 4 3 7 9
+List of tuples: [(8, 512), (6, 216), (4, 64), (3, 27), (7, 343), (9, 729)]
+"""
+n=input("Enter numbers: ")
+l=list(map(int,n.split()))
+list=[]
+for x in l:
+    tuple=(x,x**3)
+    list.append(tuple)
+    
+print("List of tuples: {}".format(list))
+//////////////////////////////////////////////////////
+program--->>5
+"""
+Given a number A which contains only digits 0's and 1's. Your task is to make all digits 
+same by just flipping one digit (i.e. 0 to 1 or 1 to 0) only. If it is possible to make all the 
+digits same by just flipping one digit then print 'YES' else print 'NO'.
+
+Sample input & output 2:
+Enter a number which contains only digits 0's and 1's: 1111101
+YES
+
+Sample input & output 3:
+Enter a number which contains only digits 0's and 1's: 0001000
+YES
+"""
+
+n=input("Enter a number which contains only digits 0's and 1's: ")
+if n.count('1')==1 or n.count('0')==1:
+    print("YES")
+else:
+    print("NO")
+////////////////////////////////////////////////////////////
+program--->7
+"""
+A professor calls out student IDs of students one by one while marking attendance. He 
+notices that the number of students recorded in the attendance sheet is far more than the 
+number of students who are actually present in the classes. Hence, he decides to use a chitti 
+the robot which can record the students' voices and keep track of which students have 
+responded to attendance calls. At the end of each session, the robot outputs the student IDs 
+of the students who have responded to attendance calls. With this information, the 
+professor needs your help to find out which students were absent. Write a program which 
+takes an integer array a denoting the student IDs recorded by the robot and print the list of 
+student IDs of the students which were absent in increasing order.
+
+Sample input & output:
+Enter strength of class: 10
+Enter attendance: 1 2 2 3 10 5 2 8 1 10
+List of student IDs of the students which were absent:
+4 6 7 9
+
+"""
+strength=int(input("Enter strength of class: "))
+n=input("Enter attendance: ")
+attendance=list(map(int,n.split()))
+l=list(set(attendance))
+absentee=[]
+for i in range(1,strength):
+    if i not in l:
+        absentee.append(i)
+print("List of student IDs of the students which were absent:")
+print(absentee)
+        
+/////////////////////////////////////////////////// 
+"""
+Create a class, Triangle. Its __init__() method should take self, angle1, angle2, and angle3 as arguments. Make sure to set these appropriately in the body of the __init__()method.
+Create a variable named number_of_sides and set it equal to 3.
+Create a method named check_angles. The sum of a triangle's three angles is It should return True if the sum of self.angle1, self.angle2, and self.angle3 is equal 180, and False otherwise.
+Create a variable named my_triangle and set it equal to a new instance of your Triangle class. Pass it three angles that sum to 180 (e.g. 90, 30, 60).
+Print out my_triangle.number_of_sides and print out my_triangle.check_angles()
+"""
+class Triangle:
+    number_of_sides=3
+    def __init__(self,angle1,angle2,angle3):
+        self.angle1=angle1
+        self.angle2=angle2
+        self.angle3=angle3
+        
+    def check_angles(self):
+        if self.angle1+self.angle2+self.angle3==180:
+            return True
+        else:
+            return False
+            
+a1=int(input())
+a2=int(input())
+a3=int(input())
+my_triangle=Triangle(a1,a2,a3)
+print(my_triangle.number_of_sides)
+print(my_triangle.check_angles())
+/////////////////////////////////////////////////////  womynxd 
+
+# A Python program to demonstrate inheritance 
+   
+# Base or Super class. Note object in bracket.
+# (Generally, object is made ancestor of all classes)
+# In Python 3.x "class Person" is 
+class Person:
+	# equivalent to "class Person(object)"
+       #class person is inherited from class object which is implicitly called
+    # Constructor
+    def __init__(self, name):
+	#self is refered as the current object
+        self.name = name
+   
+    # To get name
+    def getName(self):
+        return self.name
+   
+    # To check if this person is an employee
+    def isEmployee(self):
+        return False
+   
+   
+# Inherited or Subclass (Note Person in bracket)
+class Employee(Person):
+    #employee class is derived class of person class and person class or all classes are derived from object class
+    # Here we return true
+    def isEmployee(self):
+        return True
+   
+# Driver code
+emp = Person("Geek1")  # An Object of Person
+print(emp.getName(), emp.isEmployee())
+   
+emp = Employee("Geek2") # An Object of Employee
+print(emp.getName(), emp.isEmployee())  
+///////////////////////////////////////////////////////////
+"""
+Given a positive integer 'x' (with even number of digits in it), compute the difference 
+between the sum of the digits occurring in the alternate positions (starting from the first 
+position) and the sum of the digits occurring in the alternate positions, starting from the 
+last rightmost position of 'x'.
+
+Sample input & output 1:
+Enter an integer: 152
+Invalid number
+
+Sample input & output 2:
+Enter an integer: -25
+Invalid number
+Sample input & output 3:
+Enter an integer: 12345678
+Difference between the sums of the digits occurring in the alternate positions: 4
+
+"""
+x=input("Enter an integer: ")
+if len(x)%2!=0 or int(x)<=0:
+    print("Invalid number")
+else:
+    front=0
+    back=0
+    for i in range(0,len(x),2):
+        front+=int(x[i])
+        back+=int(x[i+1])
+    print("Difference between the sums of the digits occurring in the alternate positions: {}".format(abs(front-back)))
+//////////////////////////////////////////////////////////////////////////////////////
+************INHERITANCE**************
+-->(the diff b/w inheritance in cpp and python)In c++,the first line in the code must be the basic class(from which the properties are being inherited)l 
+class Person:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    def display(self):
+        print("My name is {} and age is {}".format(self.name,self.age))
+class Employee(Person):
+    def __init__(self,name,age,salary):
+        self.salary=salary
+        Person.__init__(self,name,age)
+    def display(self):
+        #print("My name is {} and age is {} and salary is {}".format(self.name,self.age,self.salary))-->Third class code
+	Person.display(self)
+        print("Salary is {}".format(self.salary))
+        
+emp=Employee("Akshitha",20,15000000)
+emp.display()
+///////////////////////////////////////
+*******Multithreading********
+'''
+Write a Python program illustrate the following when threads called
+in any order it should be in order like below thread A calls first(), 
+thread B calls third(), and thread C calls second(). 
+"firstsecondthird" is the correct output.
+
+Output: 
+first
+second
+third
+
+'''
+import threading
+def first(lock2):
+    print("first")
+    lock2.release()
+def second(lock2,lock3):
+    lock2.acquire()
+    print("second")
+    lock3.release()
+def third(lock3):
+    lock3.acquire()
+    print("third")
+    lock3.release()
+    
+
+lock2=threading.Lock()
+lock3=threading.Lock()
+lock2.acquire()
+lock3.acquire()#main thread owns both the locks
+t1=threading.Thread(target=first,args=(lock2,))
+t2=threading.Thread(target=second,args=(lock2,lock3))
+t3=threading.Thread(target=third,args=(lock3,))
+        
+t3.start()
+t1.start()
+t2.start()
+t1.join()
+t3.join()
+t2.join()
+
+# if __name__ == "__main__":
+////////////////////////////////////////////////////
+'''
+create a class FooBar has two methods(Threads) foo and bar which foo 
+prints "foo" and bar prints "bar" .
+call them  n times so that it should print alternatively
+Note:(consider n=5)
+output:
+foo                                                                                                                     
+bar                                                                                                                     
+foo                                                                                                                     
+bar                                                                                                                     
+foo                                                                                                                     
+bar                                                                                                                     
+foo                                                                                                                     
+bar                                                                                                                     
+foo                                                                                                                     
+bar  
+
+'''
+import threading 
+n=5
+def foo(lock2,lock3):
+    for i in range(n):
+        lock2.acquire()
+        print("foo")
+        lock3.release()
+def bar(lock2,lock3):
+    for i in range(n):
+        lock3.acquire()
+        print("bar")
+        lock2.release()
+lock2=threading.Lock()
+lock3=threading.Lock()
+lock3.acquire()
+t1=threading.Thread(target=foo,args=(lock2,lock3))
+t2=threading.Thread(target=bar,args=(lock2,lock3))
+t1.start()
+t2.start()
+t1.join()
+t2.join()
+////////////////////////////////////////////////////////////////////////////////////////
+class Person:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    def display(self):
+        print("My name is {} and age is {}".format(self.name,self.age))
+class Employee(Person):
+    def __init__(self,name,age,salary):
+        self.salary=salary
+        Person.__init__(self,name,age)
+    def display(self):
+        Person.display(self)
+        print("Salary is {}".format(self.salary))
+        
+emp=Employee("Akshitha",20,15000000)
+e1=Employee("Sam",23,2765)
+e2=Employee("Ram",25,276095)
+p1=Person("Nandini",19)
+p2=Person("Jahnavi",18)
+elist=[]
+elist.append(emp)
+elist.append(e1)
+elist.append(e2)
+elist.append(p1)
+elist.append(p2)
+for i in elist:
+    i.display()
+/////////////////////////////////////////////////////////////////////////////
+****************Multiple inheritance*******************
+class Person:
+    def __init__(self,name,age):
+        self.name=name
+        self.age=age
+    def display(self):
+        print("My name is {} and age is {}".format(self.name,self.age))
+    def eat(self):
+        print("I eat Rice")
+class Animal:
+    def __init__(self,food):
+        self.food=food
+    def eat(self):
+        print("I love to eat {}".format(self.food))
+class Employee(Person,Animal):
+    def __init__(self,name,age,salary,food):
+        self.salary=salary
+        Animal.__init__(self,food)
+        Person.__init__(self,name,age)
+    def display(self):
+        Person.display(self)
+        Animal.eat(self)
+        print("My salary is {}".format(self.salary))
+e=Employee("Akshitha",20,15000000,"Chicken")
+# e.display()
+e.eat()#we can inherit from either of the classes using the object called on employee
+#It picked up rice because the priority of Person class is first in class Employee(Person,Animal)
+
+"""       
+emp=Employee("Akshitha",20,15000000)
+e1=Employee("Sam",23,2765)
+e2=Employee("Ram",25,276095)
+p1=Person("Nandini",19)
+p2=Person("Jahnavi",18)
+elist=[]
+elist.append(emp)
+elist.append(e1)
+elist.append(e2)
+elist.append(p1)
+elist.append(p2)
+for i in elist:
+    i.display()
+"""
+/////////////////////////////////////////////////////////////////////////////////
+# PYHON EXCEPTION HANDLING
+# PYHON EXCEPTION HANDLING
+"""try:
+    marks=10000
+    val=0
+    a=marks/val
+    print(a)
+    # we handled a zero division error(exception handling)
+except:
+    print("There is some division by zero")
+ --->try with except   
+ """
+try:
+    a=10
+    b=0 /
+    c=a/b
+    arr=[1,2,3]
+    print(c)
+    print(arr[2])
+except ZeroDivisionError:
+    print("An zero divide error occured")
+except IndexError:
+    print("An index error occured")
+except:
+    print("An error occured")
+else:
+    # will execute if there is no exception
+    print("Everything is fine")
+finally:
+    print("Cleaner")
+    
+
+
+///////////////////////////////////////////////////////////
+class InsufficientFundsError(Exception):
+    # InsufficientFundsError-->this is a user defined exception
+    def __init__(self,amount):
+        self.amount=amount
+    def __str__(self):
+        # str has to return a string
+        return "No money"
+class Bankacc:
+    # user defined class
+    def __init__(self,name,bal):
+        self.name=name
+        self.bal=bal
+    def deposit(self,amount):
+        self.bal=self.bal+amount
+        print("Deposited money:",self.bal)
+    def withdraw(self,amount):
+        if amount<self.bal:
+            self.bal=self.bal-amount
+        else:
+            raise InsufficientFundsError(amount) #here,exception obj is created
+            # this invokes the constructor of exception case
+            # this signals/indicates to the class that there is insufficient fund
+try:
+    b=Bankacc("Akshitha",50000)
+    b.deposit(20000)
+    b.withdraw(100000)
+except InsufficientFundsError as error:
+    print("User defined exception:",error)
+//////////////////////////////////////////////////////////////
+import re
+class invalidage(Exception):
+    def _init_(self,age):
+        self.age=age
+class minorage(Exception):
+    def _init_(self,name):
+        self.name=name
+class invalidemail(Exception):
+    def _init_(self,email):
+        self.email=email
+class nameexists(Exception):
+    def _init_(self,name):
+        self.name=name
+class info:
+    def _init_(self,name,email,age):
+        self.name=name
+        self.age=age
+        self.email=email
+        x=re.search(".[@].[.].*",self.email)
+        if age<0:
+            raise invalidage(self.age)
+        if self.age<18:
+            raise minorage(name)
+        
+        if x==None:
+            raise invalidemail(self.email)
+a=int(input("Enter n value :"))
+print("Enter name, mail, age")
+lst=[]
+for i in range(a):
+    try:
+        name=input()
+        email=input()
+        age=int(input())
+        if name not in lst:
+            lst.append(name)
+        else:
+            raise nameexists(name)
+        info(name,email,age)
+    except minorage as error:
+        print(f"Student {name} is a minor.")
+    except invalidage as error:
+        print(f"Invalid age:{age}")
+    except invalidemail as error:
+        print(f"'{email}' is not a valid email address.")
+    except nameexists as error:
+        print(f" Username '{name}' is already exists.")
+//////////////////////////////////////////////////////////////////////////////////
+"""Let us assume paper as the plane and a letter as a curve on the plane, then each letter 
+divides the plane into regions. For example letters "A", "D", "O", "P", "R" divide the 
+plane into two regions so we say these letters each have one hole. Similarly, letter "B" has 
+two holes and letters such as "C", "E", "F", "K" have no holes. We say that the number of 
+holes in the text is equal to the total number of holes in the letters of the text. Write a 
+program to determine how many holes are in a given text.
+
+Sample input & output:
+Enter string: HELLO STUDENTS
+Number of holes in given text: 2
+"""
+string=input("Enter string: ")
+l1=["A", "D", "O", "P", "R"]
+l2=["B"]
+c=0
+for x in string:
+    if x in l1:
+        c=c+1
+    elif x in l2:
+        c=c+2
+    else:
+        pass
+print("Number of holes in given text: ",c)
+///////////////////////////////////////////////////////////////////////
+"""
+Write a function named collatz() that has one parameter named number. If number is 
+even, then collatz() should print number // 2 and return this value. If number is odd, then 
+collatz() should print and return 3 * number + 1. Then write a program that lets the user 
+type in an integer and that keeps calling collatz() on that number until the function returns 
+the value 1. Input Validation: Add try and except statements to detect whether the user 
+types in a non-integer string. In the except clause, print a message to the user saying they 
+must enter an integer
+
+test case1:
+Enter a number: 5                                                                                                       
+16 8 4 2 1
+testcase2:
+Enter a number: asha                                                                                                    
+Please enter a valid INTEGER  
+
+"""
+def collatz(n):
+    if n%2==0:
+        n=n//2
+        print(n)
+        return n
+    elif n%2==1:
+        n=(3*n+1)
+        print(n)
+        return n
+        
+try:
+    n=int(input("Enter a number: "))
+    while n!=1:
+        n=collatz(n) 
+        # passes n to collatz func until it arrives to 1
+except ValueError:
+    print("Please enter a valid INTEGER")       
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+Lexicographically Ordered Sentences
+A sentence is said to be lexicographically ordered if the words of the sentence is either in 
+lexicographically ascending or lexicographically descending order. For example, “apple is red” is in 
+lexicographically ascending order and “zebra is animal” is in lexicographically descending order. 
+Given ‘n’ sentences, write a program to print lexicographically ordered sentences.
+
+Input Format
+
+First line contains the number of sentences, n
+
+Next ‘n’ lines contain the sentences
+
+Output Format
+
+Print the sentences that is in some lexicographical order
+(lexicographically ascending order (OR) lexicographically descending order)
+
+
+Sample test cases:
+
+Input:
+3                      ------->number of sentences, n
+coding is joy              -----> sentence-1
+creativity and innovation   -----> sentence-2
+coding gives pleasure       -----> sentence-3
+
+Expected output:
+coding is joy           ----->sentences that are in some lexicographical order.
+coding gives pleasure
+----------------------------------
+Input
+5
+apple is red
+apple is fruit
+elephant is animal
+zebra is animal
+apple is sweet
+
+Expected output:
+apple is red
+zebra is animal
+apple is sweet
+----------------------------------
+
+
+n=int(input())
+list=[]
+for i in range(n):
+    list.append(input())
+for i in list:
+    x=i.split()
+    a=sorted(x)
+    b=sorted(x,reverse=True)
+    if(i==" ".join(a) or i==" ".join(b)):
+        print(i)
+////////////////////////////////////////////////////////////////////////////////////
+Swap Details Entered:
+
+An web application was designed by a company to calculate 
+the income tax of its employees as per the latest budget. 
+A form was designed to enter the details of the employees 
+and do income tax calculation. 
+Since the basic excemption limit, 
+percentage of deductions etc differ based on gender, 
+separate forms are designed in the web application for male and female. 
+Number of fields to be entered and width of the fields 
+to be entered are same. 
+By mistake both the genders have entered details in 
+the form for the other gender. 
+Internally the details entered by each employee is 
+stored as a string with a delimiter in between. 
+For males ‘:’ is used as the delimiter and for females ‘#’ is used 
+as delimiter.
+
+Given the strings of details of a male and a female employee, 
+write a code to swap the corressponding fields and make it 
+ready for further processing.
+
+For example, if the strings given are 
+50891:12378949:10000:ACZPJ9823B and 
+78191#45376107#10200#BFZPJ0453B 
+then the output should be 
+78191:45376107:10200:BFZPJ0453B and 
+50891#12378949#10000#ACZPJ9823B
+
+Input Format
+
+First line contains the details entered by female with wrong delimiter
+
+Next line contains the details entered by male with wrong delimiter
+
+Output Format
+
+First line contains the details entered by male with correct delimiter
+
+
+Sample test cases:
+
+
+Input
+369:789454568:6547:IUERY25J
+654#289654521#6796#WEOIT89L
+Expected output
+654:289654521:6796:WEOIT89L
+369#789454568#6547#IUERY25J
+---------------
+Input
+50891:12378949:10000:ACZPJ9823B
+78191#45376107#10200#BFZPJ0453B
+Expected output
+78191:45376107:10200:BFZPJ0453B
+50891#12378949#10000#ACZPJ9823B
+---------------------
+Input
+6545#458966#200200#SRTFM254V
+8654:789587:806000:QWERF895Z
+Expected output
+8654#789587#806000#QWERF895Z
+6545:458966:200200:SRTFM254V
+
+
+a=input()
+b=input()
+c=""
+d=""
+for i in a:
+    if i==':':
+        c=c+a.replace(':','#')
+        break
+    if i=='#':
+        c=c+a.replace('#',':')
+        break
+for i in b:
+    if i==':':
+        d=d+b.replace(':','#')
+        break
+    if i=='#':
+        d=d+b.replace('#',':')
+        break
+print(d)
+print(c)
+/////////////////////////////////////////////////////////////////////////////
+Arrange the Chocolates
+A shopkeeper likes to promote logical thinking. So he gives discount for kids following 
+a particular startegy when they buy even number of chocolates. 
+He asks each kid to arrange the chocolates that they want to buy and the child has to pay 
+the sum of difference of each pair of chocolates from the beginning. 
+He gives a gift if the child arranges so that the kid has to pay the maximum cost.
+
+For example, if the kid buys four chocolates with cost 2, 5, 3, 9. If the kid arranges the chocolate with costs as 2, 3, 5, 9 then the sum of difference of costs between a pair of chocolates is therefore the cost to be paid is 5 and if the arrangement is 2, 5, 3, 9 then the cost to be paid is 9. 9 is the maximum amount that could be paid.
+
+Given the number of chocolates bought by the kid and cost of each chocolate, 
+write a program to arrange the chocolates so that the kid will get a gift.
+
+Input Format
+
+First line contains the number of chocolates, n
+
+Next line contains the cost of the chocolates separated by a space
+
+Output Format
+
+In the first line, print the desired arrangement
+
+Next line should contain the cost to be paid by the kid
+
+Note: There should not be space at the end of first line in output
+
+
+
+
+Sample test cases:
+
+Input
+4
+2 5 3 9
+Expected output
+2 9 3 5
+9
+------------
+Input
+6
+13 4 8 12 9 3
+Expected output
+3 13 4 12 8 9
+19
+-----------------
+Input
+4
+1 6 2 9
+Expected output
+1 9 2 6
+12
+
+
+
+
+n=int(input())
+lst=list(map(int,input().split()))
+lst.sort()
+res=[]
+for i in range(len(lst)//2):
+    res.append(lst[i])
+    res.append(lst[-1*(i+1)])
+print(*res)
+s=0
+for i in range(len(res)-1):
+    if i%2==0:
+        s+=res[i+1]-res[i]
+    # i+=1
+print(s)
+////////////////////////////////////////////////////////////////////////////////////////
+The school office collects the monthly fee(including tution fee and miscellaneous fee)
+     of the students as per the given tariff:
+     Calss		        	Tution Fee		       	Miscellaneous Fee
+     Std I- std V	    	Rs.800		        	15% of Tution Fee
+     Std VI- std X	         Rs.1000		        20% of Tution Fee
+     Std XI- std XII	      Rs.1200		        25% of Tution Fee
+     
+     Write a program to accept the class number in integer
+     at the time of payment.find  the total fee collected.
+     
+     
+Sample test cases:
+
+Input
+6               ---->6th standard
+Expected output
+totalfee 1200       ---->Tution_fee + Miscellaneous_Fee = 1200  (for 6th standard)
+-----------------
+Input
+4
+Expected output
+totalfee 920
+------------------
+Input
+11
+Expected output
+totalfee 1500
+
+
+
+
+
+
+n=int(input())
+if(n>=1 and n<=5):
+         print("totalfee "+"920")
+elif(n>=6 and n<=10):
+      
+         print("totalfee "+"1200")
+else:
+         print("totalfee "+"1500")
+         
+//////////////////////////////////////////////////////////////////////////////
